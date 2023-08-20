@@ -2,33 +2,16 @@
 const a = 1,
   b = 2,
   c = 3;
-function example(a, b, c) {
-  return a + b + c;
-}
-
-//transformando la funcion de expresion
 
 const funcionExpresion = function (a, b, c) {
   return a + b + c;
 };
-
-//probando que los resultados son iguales
-console.log("resultado de la funcion 'example': " + example(a, b, c));
 console.log(
   "resultado de la funcion 'funcionExpresion': " + funcionExpresion(a, b, c)
 );
 
 //ej2: Transforma la siguiente a una funcion arrow de una linea
-let suma = function (a, b) {
-  return a + b;
-};
-
-//transformando a funcion arrow de una linea
-
 let unaLinea = (a, b) => a + b;
-
-//probando resultados
-
 console.log("resultado funcion arrow una linea: " + unaLinea(a, b));
 
 //ej3: Pintar un div
@@ -46,7 +29,6 @@ function pintar(elemento, color = "green") {
   );
 }
 pintar(ele, "yellow");
-
 //ej4:
 //pintar de negro
 const blueDiv = document.getElementById("div-azul");
@@ -61,18 +43,20 @@ pintar(yellowDiv, "black");
 //pintar de otros colores
 const keyDiv = document.getElementById("key");
 const divsCreados = document.getElementById("divs-creados");
-let guardaColor = "white";
-//reconocer las teclas
-document.addEventListener("keydown", function (event) {
-  if (event.key === "a") {
-    guardaColor = "pink";
-  } else if (event.key === "s") {
-    guardaColor = "orange";
-  } else if (event.key === "d") {
-    guardaColor = "cyan";
+let colorGlobalGuardado = "white";
+//reconocer las teclas y asociar un color
+function asociarColorATecla(evento, tecla, color) {
+  if (evento === tecla) {
+    colorGlobalGuardado = color;
+  } else {
+    return;
   }
-  //funcion nuevoPintar, pinta segun input de key. va dentro del addEventListener para ejecutarse en cada evento
-  nuevoPintar(keyDiv, guardaColor);
+}
+document.addEventListener("keydown", function (event) {
+  asociarColorATecla(event.key, "a", "pink");
+  asociarColorATecla(event.key, "s", "orange");
+  asociarColorATecla(event.key, "d", "cyan");
+  nuevoPintar(keyDiv, colorGlobalGuardado);
 });
 
 function nuevoPintar(elemento, color) {
@@ -80,25 +64,26 @@ function nuevoPintar(elemento, color) {
 }
 
 //crear divs de colores
-let guardaColor2 = "white";
+let colorGlobalGuardado2 = "white";
 document.addEventListener("keydown", function (ev) {
   if (ev.key === "q") {
-    guardaColor2 = "purple";
+    colorGlobalGuardado2 = "purple";
   } else if (ev.key === "w") {
-    guardaColor2 = "grey";
+    colorGlobalGuardado2 = "grey";
   } else if (ev.key === "e") {
-    guardaColor2 = "brown";
+    colorGlobalGuardado2 = "brown";
   } else {
     return;
   }
+
   //funcion crearDiv. Crea div de un color en una parte del html. va dentro del addEventListener para ejecutarse en cada evento
-  crearDiv(guardaColor2);
+  crearDiv(colorGlobalGuardado2);
 });
 
 function crearDiv(color) {
   const divCreado = document.createElement("div");
-  divCreado.style.backgroundColor = color;
   divCreado.style.width = "200px";
   divCreado.style.height = "200px";
+  nuevoPintar(divCreado, color);
   divsCreados.appendChild(divCreado);
 }
