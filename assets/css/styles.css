@@ -1,3 +1,6 @@
+h1 {
+  text-align: center;
+}
 .ejercicios-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
