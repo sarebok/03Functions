@@ -1,0 +1,22 @@
+.ejercicios-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 4rem;
+}
+
+.divs-container,
+.div-colorido,
+#divs-creados {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.ejercicios {
+  border: 1px solid black;
+  margin: 0.5rem;
+  padding: 1rem;
+}
+
+#divs-creados {
+  max-width: 600px;
+}

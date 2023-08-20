@@ -60,22 +60,45 @@ pintar(yellowDiv, "black");
 
 //pintar de otros colores
 const keyDiv = document.getElementById("key");
-//reconocer las teclas
-
+const divsCreados = document.getElementById("divs-creados");
 let guardaColor = "white";
+//reconocer las teclas
 document.addEventListener("keydown", function (event) {
   if (event.key === "a") {
-    console.log("apretando a");
     guardaColor = "pink";
   } else if (event.key === "s") {
     guardaColor = "orange";
   } else if (event.key === "d") {
     guardaColor = "cyan";
   }
-  console.log("color guardado " + guardaColor);
+  //funcion nuevoPintar, pinta segun input de key. va dentro del addEventListener para ejecutarse en cada evento
   nuevoPintar(keyDiv, guardaColor);
 });
 
 function nuevoPintar(elemento, color) {
   elemento.style.backgroundColor = color;
+}
+
+//crear divs de colores
+let guardaColor2 = "white";
+document.addEventListener("keydown", function (ev) {
+  if (ev.key === "q") {
+    guardaColor2 = "purple";
+  } else if (ev.key === "w") {
+    guardaColor2 = "grey";
+  } else if (ev.key === "e") {
+    guardaColor2 = "brown";
+  } else {
+    return;
+  }
+  //funcion crearDiv. Crea div de un color en una parte del html. va dentro del addEventListener para ejecutarse en cada evento
+  crearDiv(guardaColor2);
+});
+
+function crearDiv(color) {
+  const divCreado = document.createElement("div");
+  divCreado.style.backgroundColor = color;
+  divCreado.style.width = "200px";
+  divCreado.style.height = "200px";
+  divsCreados.appendChild(divCreado);
 }
